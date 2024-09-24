@@ -230,6 +230,11 @@ TopViewControllerForViewController(UIViewController *viewController) {
     if (_mimeType && [_mimeType hasPrefix:@"image/"]) {
       metadata.imageProvider = [[NSItemProvider alloc]
           initWithObject:[UIImage imageWithContentsOfFile:_path]];
+    } else {
+      NSString *localImagePath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"share_preview.png"];
+
+      metadata.imageProvider = [[NSItemProvider alloc]
+          initWithObject:[UIImage imageWithContentsOfFile:localImagePath]];
     }
   }
 
